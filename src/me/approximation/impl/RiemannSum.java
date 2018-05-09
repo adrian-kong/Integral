@@ -1,9 +1,11 @@
-package me;
+package me.approximation.impl;
+
+import me.approximation.SumInterface;
 
 /**
- * @author Adrian on 09/05
+ * @author Adrian on 09/05/18
  */
-public class TrapezoidalSum implements ApproximationMethod {
+public class RiemannSum implements SumInterface {
 
     @Override
     public float calculate(float leftBound, float rightBound, int partitionAmount) {
@@ -12,12 +14,10 @@ public class TrapezoidalSum implements ApproximationMethod {
         float dX = difference / (float) partitionAmount;
         int partition = (int) (difference / dX);
         int count = 0;
-        float prevX = leftBound;
         while (count < partition) {
-            float x = dX * (count + 1);
-            float y = dX * ((float) Math.sin(x) + (float) Math.sin(prevX)) / 2; // (b - a)[f(a) + f(b)] / 2
-            approximation += y;
-            prevX = x;
+            float x = count * dX;
+            float y = (float) Math.sin(x); // y value of function which is currently sin x
+            approximation += y * dX;
             count++;
         }
         return approximation;

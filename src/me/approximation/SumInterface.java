@@ -1,9 +1,9 @@
-package me;
+package me.approximation;
 
 /**
  * @author Adrian on 09/05
  */
-interface ApproximationMethod {
+public interface SumInterface {
 
     float calculate(float leftBound, float rightBound, int partitionAmount);
 
